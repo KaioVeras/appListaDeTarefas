@@ -23,7 +23,6 @@ export default function SignIn() {
   const [secureText, setSecureText] = useState(true);
 
   async function handleAcessar() {
-    //TODO: Acessar página taks através de login já existente
     await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
