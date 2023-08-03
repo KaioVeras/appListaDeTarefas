@@ -28,7 +28,7 @@ export default function SignUp() {
       .createUserWithEmailAndPassword(email, password)
       .then((value) => {
         alert("Cadastro realizado com sucesso, seja bem vindo!");
-        navigation.navigate("Task");
+        navigation.navigate("Task", { user: value.user.uid });
       })
       .catch((error) => {
         alert("Ops, algo de errado");

@@ -28,7 +28,7 @@ export default function SignIn() {
       .signInWithEmailAndPassword(email, password)
       .then((value) => {
         alert("Bem vindo de volta");
-        navigation.navigate("Task");
+        navigation.navigate("Task", { user: value.user.uid });
       })
       .catch((error) => {
         if (

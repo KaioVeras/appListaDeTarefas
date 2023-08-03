@@ -6,9 +6,20 @@ export const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#f2f6fc",
   },
+  header: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: 'space-between',
+  },
+  iconLogout: {
+    margin: 10,
+    marginTop: -5,
+  },
   containerTask: {
     flexDirection: "row",
     width: "100%",
+    marginBottom: 10,
+    marginTop: 15,
   },
   input: {
     borderWidth: 1,
@@ -29,5 +40,13 @@ export const styles = StyleSheet.create({
   btnText: {
     color: "#fff",
     fontSize: 20,
+  },
+  totalTarefas: {
+    color: '#011C40',
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: -10,
+    marginLeft: 4,
+    marginTop: 10,
   },
 });
