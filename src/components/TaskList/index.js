@@ -7,9 +7,10 @@ import {
 } from "react-native";
 
 import Feather from "react-native-vector-icons/Feather";
+import firebase from "../../services/firebaseConnection";
 import { styles } from "./styles";
 
-export default function TaskList({ data }) {
+export default function TaskList({ data, handleDelete, handleEdit }) {
   const [btnCheck, setBtnCheck] = useState(false);
 
   function handleCheck() {
@@ -28,7 +29,7 @@ export default function TaskList({ data }) {
         </TouchableOpacity>
 
         <View>
-          <TouchableNativeFeedback>
+          <TouchableNativeFeedback onPress={handleEdit}>
             <Text
               style={btnCheck == true ? styles.taskDeleteText : styles.taskText}
             >
@@ -39,7 +40,7 @@ export default function TaskList({ data }) {
       </View>
 
       <View style={{ alignSelf: "flex-end" }}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleDelete}>
           <Feather name="trash-2" size={20} color="#fff" />
         </TouchableOpacity>
       </View>

@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+} from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { styles } from "./styles";
 
 import Logo from "../../components/Logo";
 
 export default function Welcome() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -29,11 +35,13 @@ export default function Welcome() {
           aumentar sua produtividade.
         </Text>
 
-        <TouchableOpacity style={styles.botao} onPress={() => navigation.navigate('SignIn')}>
+        <TouchableOpacity
+          style={styles.botao}
+          onPress={() => navigation.navigate("SignIn")}
+        >
           <Text style={styles.btnTexto}>Começar</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
-

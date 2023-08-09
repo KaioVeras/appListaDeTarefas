@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
   FlatList,
@@ -15,14 +14,18 @@ import MaterilIcon from "react-native-vector-icons/MaterialIcons";
 import firebase from "../../services/firebaseConnection";
 import TaskList from "../../components/TaskList";
 import Logo from "../../components/Logo";
-import MyModal from "../../components/MyModal";
+import ModalLogout from "../../components/ModalLogout";
 
 export default function Task({ route }) {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
-  const user = route.params?.user;
+  const [key, setKey] = useState("");
 
-  const [visibleModal, setVisibleModal] = useState(false);
+  const [visibleModalLogout, setVisibleModalLogout] = useState(false);
+
+  const inputRef = useRef(null);
+
+  const user = route.params?.user;
 
   useEffect(() => {
     function getUser() {
@@ -55,6 +58,29 @@ export default function Task({ route }) {
       return;
     }
 
+    if (key !== "") {
+      firebase
+        .database()
+        .ref("tarefas")
+        .child(user)
+        .child(key)
+        .update({
+          nome: newTask,
+        })
+        .then(() => {
+          const taskIndex = tasks.findIndex((item) => item.key === key);
+          let taskClone = tasks;
+
+          taskClone[taskIndex].nome = newTask;
+          setTasks([...taskClone]);
+        });
+
+      setNewTask("");
+      setKey("");
+      Keyboard.dismiss();
+      return;
+    }
+
     let tarefas = firebase.database().ref("tarefas").child(user);
     let chave = tarefas.push().key;
 
@@ -76,8 +102,27 @@ export default function Task({ route }) {
     setNewTask("");
   }
 
-  async function handleLogout() {
-    setVisibleModal(true);
+  function handleDelete(key) {
+    firebase
+      .database()
+      .ref("tarefas")
+      .child(user)
+      .child(key)
+      .remove()
+      .then(() => {
+        const findTasks = tasks.filter((item) => item.key !== key);
+        setTasks(findTasks);
+      });
+  }
+
+  function handleEdit(data) {
+    setKey(data.key);
+    setNewTask(data.nome);
+    inputRef.current.focus();
+  }
+
+  function handleLogout() {
+    setVisibleModalLogout(true);
     firebase.auth().signOut();
     //TODO:
   }
@@ -104,6 +149,8 @@ export default function Task({ route }) {
           style={styles.input}
           value={newTask}
           onChangeText={(text) => setNewTask(text)}
+          ref={inputRef}
+          cursorColor="#404040"
         />
         <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
           <Feather name="plus-circle" size={20} color="#fff" />
@@ -112,12 +159,20 @@ export default function Task({ route }) {
 
       <FlatList
         data={tasks}
-        renderItem={({ item }) => <TaskList data={item} />}
+        keyExtractor={(item) => item.key}
+        renderItem={({ item }) => (
+          <TaskList
+            data={item}
+            handleDelete={() => handleDelete(item.key)}
+            handleEdit={() => handleEdit(item)}
+          />
+        )}
+        user={user}
       />
 
-      <MyModal
-        visible={visibleModal}
-        visibleModalFalse={() => setVisibleModal(false)}
+      <ModalLogout
+        visible={visibleModalLogout}
+        visibleModalFalse={() => setVisibleModalLogout(false)}
       />
     </View>
   );

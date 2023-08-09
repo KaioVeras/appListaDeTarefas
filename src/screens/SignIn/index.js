@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   SafeAreaView,
   TouchableOpacity,
+  Keyboard,
+  ActivityIndicator,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
 import { styles } from "./styles";
@@ -21,16 +22,21 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
 
   const [secureText, setSecureText] = useState(true);
+  const [loadingAcessar, setLoadingAcessar] = useState(false);
 
   async function handleAcessar() {
+    setLoadingAcessar(true);
+
     await firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((value) => {
-        alert("Bem vindo de volta");
+        setLoadingAcessar(false);
+        Keyboard.dismiss();
         navigation.navigate("Task", { user: value.user.uid });
       })
       .catch((error) => {
+        setLoadingAcessar(false)
         if (
           error.code === "auth/user-not-found" ||
           error.code === "auth/invalid-email"
@@ -109,7 +115,11 @@ export default function SignIn() {
 
       <View style={{ alignItems: "center" }}>
         <TouchableOpacity style={styles.botao} onPress={handleAcessar}>
-          <Text style={styles.btnTexto}>Acessar</Text>
+          {loadingAcessar == false ? (
+            <Text style={styles.btnTexto}>Acessar</Text>
+          ) : (
+            <ActivityIndicator size={20} color="#fff" />
+          )}
         </TouchableOpacity>
         <TouchableOpacity onPress={criarConta}>
           <Text style={styles.botaoSignUp}>

@@ -3,7 +3,7 @@ import { View, Text, Modal, TouchableOpacity } from "react-native";
 
 import { styles } from "./styles";
 
-export default function MyModal({ visible, visibleModalFalse }) {
+export default function ModalLogout({ visible, visibleModalFalse }) {
   return (
     <View>
       <Modal visible={visible} transparent={true} animationType="fade">
