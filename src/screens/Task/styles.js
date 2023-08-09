@@ -49,4 +49,16 @@ export const styles = StyleSheet.create({
     marginLeft: 4,
     marginTop: 10,
   },
+  alertEdit: {
+    flexDirection: "row",
+    gap: 5,
+    alignItems: "center",
+    marginLeft: 5,
+    marginBottom: -5,
+  },
+  txtAlertEdit: {
+    color: '#F00',
+    fontWeight: "bold",
+    fontSize: 16,
+  },
 });

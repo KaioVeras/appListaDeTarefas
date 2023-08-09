@@ -20,6 +20,7 @@ export default function Task({ route }) {
   const [newTask, setNewTask] = useState("");
   const [tasks, setTasks] = useState([]);
   const [key, setKey] = useState("");
+  const [alertEdit, setAlertEdit] = useState(false);
 
   const [visibleModalLogout, setVisibleModalLogout] = useState(false);
 
@@ -78,6 +79,7 @@ export default function Task({ route }) {
       setNewTask("");
       setKey("");
       Keyboard.dismiss();
+      setAlertEdit(false);
       return;
     }
 
@@ -119,30 +121,35 @@ export default function Task({ route }) {
     setKey(data.key);
     setNewTask(data.nome);
     inputRef.current.focus();
+    setAlertEdit(true);
   }
 
-  function handleLogout() {
-    setVisibleModalLogout(true);
-    firebase.auth().signOut();
-    //TODO:
+  function handleCancelEdit() {
+    setAlertEdit(false);
+    setNewTask("");
+    Keyboard.dismiss();
   }
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Logo />
+      <Logo />
 
-        <TouchableOpacity onPress={handleLogout}>
-          <MaterilIcon
-            name="exit-to-app"
-            size={30}
-            color="#000"
-            style={styles.iconLogout}
-          />
-        </TouchableOpacity>
-      </View>
+      {alertEdit == false ? (
+        <Text style={styles.totalTarefas}>
+          Total de tarefas: {tasks.length}
+        </Text>
+      ) : (
+        <View style={styles.alertEdit}>
+          <TouchableOpacity onPress={handleCancelEdit}>
+            <Feather name="x-circle" size={20} color="#F00" />
+          </TouchableOpacity>
 
-      <Text style={styles.totalTarefas}>Total de tarefas: {tasks.length}</Text>
+          <Text style={styles.txtAlertEdit}>
+            Você está editando uma tarefa.
+          </Text>
+        </View>
+      )}
+
       <View style={styles.containerTask}>
         <TextInput
           placeholder="O que vai fazer hoje?"
