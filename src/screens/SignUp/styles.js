@@ -45,7 +45,7 @@ export const styles = StyleSheet.create({
     botao: {
       width: "95%",
       backgroundColor: "#011C40",
-      marginTop: 50,
+      marginTop: 30,
       height: 50,
       justifyContent: "center",
       borderRadius: 30,
