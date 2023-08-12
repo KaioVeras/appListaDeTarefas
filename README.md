@@ -11,7 +11,7 @@
 <br>
 
 <div align='center'>
-    <img src='https://i.im.ge/2023/08/13/jkanVr.Design-sem-nome.gif' alt='lista de tarefas' width=250/>
+    <img src='https://i.im.ge/2023/08/13/jksL4X.listaDeTarefas.gif' alt='lista de tarefas' width=250/>
 </div>
 
 ## 🚀 Tecnologias
