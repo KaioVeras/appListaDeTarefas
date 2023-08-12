@@ -11,7 +11,7 @@
 <br>
 
 <div align='center'>
-    <img src='https://i.im.ge/2023/08/13/jk2mD8.listaDeTarefas.gif' alt='lista de tarefas' />
+    <img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzUxMWd0bzE0aHNtZTlnNjQ4NHJ3OWY5M3o4cWxvODFidzB4OHNoZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Kj7WEN2xs5ppuHowp3/giphy.gif' alt='conversor de moedas' />
 </div>
 
 ## 🚀 Tecnologias
