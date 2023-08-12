@@ -10,11 +10,9 @@ import {
 import { styles } from "./styles";
 
 import Feather from "react-native-vector-icons/Feather";
-import MaterilIcon from "react-native-vector-icons/MaterialIcons";
 import firebase from "../../services/firebaseConnection";
 import TaskList from "../../components/TaskList";
 import Logo from "../../components/Logo";
-import ModalLogout from "../../components/ModalLogout";
 
 export default function Task({ route }) {
   const [newTask, setNewTask] = useState("");
@@ -175,11 +173,6 @@ export default function Task({ route }) {
           />
         )}
         user={user}
-      />
-
-      <ModalLogout
-        visible={visibleModalLogout}
-        visibleModalFalse={() => setVisibleModalLogout(false)}
       />
     </View>
   );
