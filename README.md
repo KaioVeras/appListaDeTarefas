@@ -14,20 +14,6 @@
     <img src='https://i.im.ge/2023/08/13/jk2mD8.listaDeTarefas.gif' alt='conversor de moedas' width=230/>
 </div>
 
-## Screenshots
-
-<div> 
-    <details> 
-        <summary style='margin-bottom: 10px'>Clique para mostrar as imagens</summary> 
-        <div> 
-            <img src='https://i.im.ge/2023/08/13/jkdXm0.welcome.png' alt='Page Welcome' width=300/> 
-            <img src='https://i.im.ge/2023/08/13/jkd7mz.signIn.png' alt='Page SignIn' width=300/> 
-            <img src='https://i.im.ge/2023/08/13/jkda1S.signUp.png' alt='Page SignUp' width=300/> 
-            <img src='https://i.im.ge/2023/08/13/jkddyJ.tasks.png' alt='Page Tasks' width=300/> 
-        </div> 
-    </details> 
-</div>
-
 ## 🚀 Tecnologias
 
 <p>Esse projeto foi construido com as seguintes tecnologias</p>
