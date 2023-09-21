@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
 } from "react-native";
@@ -16,6 +15,7 @@ import firebase from "../../services/firebaseConnection";
 export default function SignUp() {
   const navigation = useNavigation();
 
+  const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -58,6 +58,21 @@ export default function SignUp() {
         </Text>
       </View>
 
+      <View style={styles.containerInputs}>
+        <TextInput
+          placeholder="Nome"
+          value={nome}
+          onChangeText={(text) => setNome(text)}
+          style={styles.input}
+          cursorColor="#404040"
+        />
+        <Feather
+          name="user"
+          size={20}
+          color="#404040"
+          style={styles.iconEmail}
+        />
+      </View>
       <View style={styles.containerInputs}>
         <TextInput
           placeholder="Email"
