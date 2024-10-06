@@ -32,6 +32,8 @@ export default function SignUp() {
       })
       .catch((error) => {
         alert("Ops, algo de errado");
+        console.log(error);
+        
       });
   }
 
